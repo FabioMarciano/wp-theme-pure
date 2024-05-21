@@ -1,0 +1,60 @@
+/**
+ * Base css file
+ */
+
+@use "cfg";
+@use "header";
+@use "footer";
+@use "content";
+
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: none;
+}
+
+html,
+body {
+	font-size: var(--font-base-size);
+	min-height: 100vh;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+address,
+var,
+em {
+	font-style: normal;
+}
+
+ul,
+ol {
+	list-style-type: none;
+}
+
+p {
+	font-size: var(--paragraph-font-size);
+	line-height: var(--paragraph-line-height);
+	margin-bottom: var(--paragraph-margin-bottom);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-size: 1em;
+}
+
+button {
+	cursor: pointer;
+	user-select: none;
+}

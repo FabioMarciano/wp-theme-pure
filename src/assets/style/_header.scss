@@ -1,0 +1,79 @@
+/**
+ * Header CSS file
+ */
+
+@use "cfg";
+
+#body-header {
+	position: sticky;
+	top: 0;
+	background-color: var(--header-bg-color);
+	z-index: var(--header-z-index);
+
+	& > div {
+		width: 100%;
+		max-width: var(--header-workspace-max-width);
+		height: var(--header-height);
+	}
+
+	&-toggle-nav-button {
+		display: block;
+		position: absolute;
+		left: var(--regular-gap);
+		top: 50%;
+		transform: translate(0, -50%);
+		width: 32px;
+		height: 32px;
+		text-indent: -999em;
+	}
+
+	[data-body-nav] &-toggle-nav-button {
+		background-color: #00f;
+	}
+
+	&-headline {
+		display: block;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(0, -50%);
+	}
+}
+/**
+  * Navigation
+  */
+
+#body-nav {
+	position: fixed;
+	left: 0;
+	width: 100%;
+	max-width: var(--navigation-menu-max-width);
+	top: var(--header-height);
+	bottom: 0;
+	transform: translate(-100%, 0);
+	background: var(--navigation-menu-bg-color);
+	transition: transform 0.2s ease-in-out;
+	z-index: var(--body-nav-z-index);
+
+	[data-body-nav] & {
+		transform: translate(0, 0);
+	}
+}
+
+body::after {
+	content: "";
+	display: block;
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: var(--header-height);
+	background-color: rgba(0, 0, 0, 0);
+	transition: background-color 0.2s ease-in-out;
+	z-index: 0;
+}
+
+body[data-body-nav]::after {
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: calc(var(--body-nav-z-index) - 1);
+}

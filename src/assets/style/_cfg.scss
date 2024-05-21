@@ -1,0 +1,37 @@
+/**
+ * Configuration (cfg) file
+ */
+
+:root {
+	/* GENERAL SETTINGS */
+	--font-base-size: 10px;
+
+	--paragraph-font-size: 1.4em;
+	--paragraph-line-height: 1.5em;
+	--paragraph-margin-bottom: 1.5em;
+
+	--regular-gap: 8px;
+
+	/* HEADER SETTINGS */
+	--header-height: 48px;
+	--header-bg-color: #00f;
+	--header-workspace-max-width: 1280px;
+	--header-z-index: 4;
+
+	/* MAIN MENU */
+	--navigation-menu-max-width: 280px;
+	--navigation-menu-bg-color: linear-gradient(#f00, #00f);
+
+	/* BODY NAVIGATION SETTINGS */
+	--body-nav-z-index: 9;
+
+	/* FOOTER SETTINGS */
+	--footer-bg-color: #ccc;
+	--footer-workspace-max-width: 1280px;
+	--footer-z-index: 2;
+
+	/* CONTENT SETTINGS */
+	--content-bg-color: #efefef;
+	--content-z-index: 3;
+	--content-min-height: calc (100vh - var(--header-height));
+}

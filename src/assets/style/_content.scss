@@ -1,0 +1,12 @@
+/**
+ * Content CSS file
+ */
+
+@use "cfg";
+
+body {
+	& > main {
+		position: relative;
+		z-index: var(--content-z-index);
+	}
+}
