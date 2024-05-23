@@ -3,14 +3,26 @@
 	"version": "1.0.0",
 	"description": "Pure is a theme for WordPress with focus on performance, semantic, standards and search engine optimization (SEO).",
 	"main": "index.js",
+	"watch": {
+		"build:dev": {
+			"patterns": [
+				"src"
+			],
+			"extensions": "ts,js,inc,html,php,scss,json",
+			"quiet": false
+		}
+	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"build": "node index.js && tsc --outDir ./dist/${npm_package_name}-${npm_package_version}"
+		"build": "node index.js && tsc --outDir ./dist/${npm_package_name}-${npm_package_version}",
+		"build:dev": "npm run build",
+		"dev": "npm-watch"
 	},
 	"author": "",
 	"license": "ISC",
 	"devDependencies": {
 		"dotenv": "^16.4.5",
+		"npm-watch": "^0.13.0",
 		"sass": "^1.77.2",
 		"typescript": "^5.4.5"
 	}
