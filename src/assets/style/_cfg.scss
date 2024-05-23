@@ -4,7 +4,7 @@
 
 :root {
 	/* GENERAL SETTINGS */
-	--font-base-size: 10px;
+	--font-base-size: 1em;
 
 	--paragraph-font-size: 1.4em;
 	--paragraph-line-height: 1.5em;
@@ -14,7 +14,7 @@
 
 	/* HEADER SETTINGS */
 	--header-height: 48px;
-	--header-bg-color: #00f;
+	--header-bg-color: #fff;
 	--header-workspace-max-width: 1280px;
 	--header-z-index: 4;
 
@@ -26,7 +26,7 @@
 	--body-nav-z-index: 9;
 
 	/* FOOTER SETTINGS */
-	--footer-bg-color: #ccc;
+	--footer-bg-color: #fff;
 	--footer-workspace-max-width: 1280px;
 	--footer-z-index: 2;
 

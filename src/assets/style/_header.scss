@@ -8,6 +8,7 @@
 	position: sticky;
 	top: 0;
 	background-color: var(--header-bg-color);
+	border-bottom: solid 1px #000;
 	z-index: var(--header-z-index);
 
 	& > div {
@@ -28,7 +29,7 @@
 	}
 
 	[data-body-nav] &-toggle-nav-button {
-		background-color: #00f;
+		background-color: #f0f;
 	}
 
 	&-headline {
