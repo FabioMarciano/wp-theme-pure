@@ -1,7 +1,7 @@
-<figure>
-	<picture>
-		<img src="" width="" height="" alt="" title="" />
-		<source src="" srcset="" />
-	</picture>
-	<figcaption></figcaption>
+<!-- IMAGE ELEMENT -->
+<figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+	<img itemprop="url" src="" width="" height="" alt="" fetchpriority="high">
+	<figcaption itemprop="caption">
+	</figcaption>
 </figure>
+<!-- /IMAGE ELEMENT -->

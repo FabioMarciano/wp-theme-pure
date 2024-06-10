@@ -10,25 +10,25 @@ importScripts(workBoxUrl);
 /**
  * Precache slot name
  */
-const preCacheName = `pure-pre-cache`;
+const preCacheSlotName = `pure-pre-cache`;
+
+/**
+ * Precache item list
+ */
+const preCacheItemList = ['/favicon.ico'];
 
 /**
  * Precache function
  * @param data url list
  */
-const preCache = async (data = []) => {
+(async (data = []) => {
 	caches
-		.open(preCacheName)
+		.open(preCacheSlotName)
 		.then((cache) => {
-			console.log('caching files');
+			console.log(`Caching files on ${preCacheSlotName}`);
 			cache.addAll(data);
 		})
 		.catch((error) => {
-			console.log(`Error on precache files:\n${error}`);
+			console.log(`Error on precaching files:\n${error}`);
 		});
-};
-
-/**
- * Precache files
- */
-preCache(['/favicon.ico']);
+})(preCacheItemList);

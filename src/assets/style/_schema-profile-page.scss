@@ -1,0 +1,15 @@
+/**
+ * Profile Page Schema CSS file
+ */
+
+@use "cfg";
+
+html[itemtype$="/ProfilePage"] main {
+	padding: var(--regular-gap);
+	& header {
+		figure {
+			width: 64px;
+			height: auto;
+		}
+	}
+}

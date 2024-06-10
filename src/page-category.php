@@ -26,13 +26,20 @@
 	<main>
 		<!-- MAIN HEADER -->
 		<header>
-			<?php the_archive_title('<h1>', '</h1>'); ?>
+			Glossário
 		</header>
 		<!-- /MAIN HEADER -->
+		<div>
+			<?php
+			$categories = get_terms(['taxonomy' => 'category', 'hide_empty' => 0]);
+			foreach ($categories as $category) {
+				echo '<div class="col-md-4"><a href="' . get_category_link($category->term_id) . '">' . $category->name . '</a></div>';
+			}
+			?>
+		</div>
 		<!-- MAIN FOOTER -->
 		<footer>
-			<?php $description = get_the_archive_description();
-			echo $description; ?>
+			FOOTER
 		</footer>
 		<!-- MAIN FOOTER -->
 	</main>

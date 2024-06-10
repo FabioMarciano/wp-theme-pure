@@ -10,7 +10,7 @@ if ($mainMenu && sizeof($mainMenu) > 0) :
 		<header id="body-nav-header">
 			<h2 id="body-nav-headline">Menu de navegação</h2>
 		</header>
-		<ul id="body-nav-list" itemscope itemtype="https://schema.org/SiteNavigationElement">
+		<menu id="body-nav-list" itemscope itemtype="https://schema.org/SiteNavigationElement">
 			<?php
 			foreach ($mainMenu as $key => $item) :
 			?>
@@ -33,7 +33,7 @@ if ($mainMenu && sizeof($mainMenu) > 0) :
 			<?php
 			endforeach;
 			?>
-		</ul>
+		</menu>
 		<footer id="body-nav-footer">
 			<?php if ($socialNetworking && sizeof($socialNetworking) > 0) : ?>
 				<!-- SOCIAL NETWORK -->

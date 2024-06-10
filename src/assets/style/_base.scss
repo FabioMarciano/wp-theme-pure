@@ -4,8 +4,12 @@
 
 @use "cfg";
 @use "header";
+@use "navigation";
 @use "footer";
 @use "content";
+@use "schema-web-site";
+@use "schema-news-article";
+@use "schema-profile-page";
 
 * {
 	margin: 0;
@@ -34,7 +38,8 @@ em {
 }
 
 ul,
-ol {
+ol,
+menu {
 	list-style-type: none;
 }
 
@@ -56,4 +61,8 @@ h6 {
 button {
 	cursor: pointer;
 	user-select: none;
+}
+
+img {
+	display: block;
 }

@@ -3,15 +3,17 @@
 require_once("include/hook-pwa.php");
 require_once("include/hook-tag-builder.php");
 require_once("include/hook-web-manifest.php");
-require_once("include/page-manifest.php");
+require_once("include/page-web-manifest.php");
+require_once("include/page-pwa.php");
 
 /**
  * Footer actions
  */
 
 add_action('wp_footer', function () {
+	include("footer.php");
 	hook_pwa("service-worker.js");
-	hook_tag_builder("script", ["src" => get_theme_file_uri("/assets/script/main.js"), "defer" => "defer"]);
+	hook_tag_builder("script", ["src" => get_theme_file_uri("/assets/script/main.js"),  "defer" => "defer"]);
 });
 
 /**
@@ -38,6 +40,22 @@ remove_action('wp_head', 'wlwmanifest_link');
  * Removing default robots metatag
  */
 remove_action('wp_head', 'wp_robots', 1);
+
+/**
+ * Removing default shortlik metatag
+ */
+remove_action('wp_head', 'wp_shortlink_wp_head', 10);
+
+/**
+ * Removing default oembed metatag
+ */
+remove_action('wp_head', 'wp_oembed_add_discovery_links', 10);
+
+/**
+ * Removing default rss feed metatag
+ */
+remove_action('wp_head', 'feed_links_extra', 3);
+remove_action('wp_head', 'feed_links', 2);
 
 /**
  * Removing WP generator metatag
@@ -92,12 +110,40 @@ function schema_head()
 {
 	$url = (is_home() || is_front_page()) ? get_site_url() : get_the_permalink();
 
-	echo "\n<meta itemprop=\"url\" content=\"" . $url . "\">";
+	hook_tag_builder("meta", ["itemprop" => "url", "content" => $url], null, true);
+	echo "\n\t";
 
 	if (is_home() || is_front_page()) {
-		echo "\n<meta itemprop=\"name\" content=\"" . get_bloginfo('name') . "\">";
+		hook_tag_builder("meta", ["itemprop" => "name", "content" =>  get_bloginfo('name')], null, true);
+		echo "\n";
 	}
 }
+
+/**
+ * Remove admin bar
+ */
+
+add_filter('show_admin_bar', '__return_false');
+
+/**
+ * Remove prefix from archive
+ */
+add_filter('get_the_archive_title', function ($title) {
+
+	if (is_category()) {
+		$title = single_cat_title('', false);
+	} elseif (is_tag()) {
+		$title = single_tag_title('', false);
+	} elseif (is_author()) {
+		$title = get_the_author();
+	} elseif (is_tax()) {
+		$title = sprintf(__('%1$s'), single_term_title('', false));
+	} elseif (is_post_type_archive()) {
+		$title = post_type_archive_title('', false);
+	}
+
+	return $title;
+});
 
 /**
  * Schema type by template
@@ -108,26 +154,30 @@ function schema_type()
 }
 
 /**
+ * Custom PWA menu
+ */
+
+add_action('admin_menu', 'menu_pwa');
+function menu_pwa()
+{
+	add_menu_page('PWA', 'PWA', 'manage_options', 'pwa-page', 'page_pwa', 'dashicons-admin-site-alt3', 80);
+}
+
+/**
  * Custom Manifest submenu
  */
 
-// add_action('admin_menu', 'submenu_manifest');
+add_action('admin_menu', 'submenu_web_manifest');
 
-// function submenu_manifest()
-// {
-// 	add_submenu_page(
-// 		'options-general.php',
-// 		'Web Manifest',
-// 		'Web Manifest',
-// 		'manage_options',
-// 		'manifest',
-// 		'page_manifest',
-// 		7
-// 	);
-// }
-
-/**
- * Remove admin bar
- */
-
-add_filter('show_admin_bar', '__return_false');
+function submenu_web_manifest()
+{
+	add_submenu_page(
+		'pwa-page',
+		'Web Manifest',
+		'Web Manifest',
+		'manage_options',
+		'manifest',
+		'page_web_manifest',
+		1
+	);
+}

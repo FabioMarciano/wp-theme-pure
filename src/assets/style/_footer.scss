@@ -7,13 +7,18 @@
 #body-footer {
 	position: relative;
 	background-color: var(--footer-bg-color);
-	padding: 1em 0;
-	border-top: solid 1px #000;
+	border-style: var(--footer-border-style);
+	border-color: var(--footer-border-color);
+	border-width: var(--footer-border-width);
 	z-index: var(--footer-z-index);
 
 	& > div {
+		position: relative;
 		width: 100%;
 		max-width: var(--footer-workspace-max-width);
+		margin: auto;
+		padding: var(--regular-gap);
+		box-sizing: border-box;
 	}
 
 	&-headline {

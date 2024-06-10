@@ -51,7 +51,9 @@ const copy = () => {
 };
 
 const css = () => {
-	const output = sass.compile(`${[sourceDirPath, 'style.scss'].join('/')}`);
+	const output = sass.compile(`${[sourceDirPath, 'style.scss'].join('/')}`, {
+		style: 'compressed',
+	});
 	fs.writeFileSync(`${[buildDirPath, 'style.css'].join('/')}`, output.css, {
 		encoding: 'utf-8',
 	});

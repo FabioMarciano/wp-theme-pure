@@ -7,6 +7,14 @@
 body {
 	& > main {
 		position: relative;
+		max-width: var(--content-workspace-max-width);
+		margin: auto;
+		box-sizing: border-box;
 		z-index: var(--content-z-index);
+
+		& img {
+			width: 100%;
+			height: auto;
+		}
 	}
 }

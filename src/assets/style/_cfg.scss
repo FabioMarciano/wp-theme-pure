@@ -4,34 +4,47 @@
 
 :root {
 	/* GENERAL SETTINGS */
-	--font-base-size: 1em;
+	--base-value: 2;
+	--font-base-size: 10px;
 
-	--paragraph-font-size: 1.4em;
+	--paragraph-font-size: 1.6em;
 	--paragraph-line-height: 1.5em;
 	--paragraph-margin-bottom: 1.5em;
 
-	--regular-gap: 8px;
+	--regular-gap: calc(pow(var(--base-value), 3) * 1px);
 
 	/* HEADER SETTINGS */
 	--header-height: 48px;
 	--header-bg-color: #fff;
-	--header-workspace-max-width: 1280px;
+	--header-workspace-max-width: calc(pow(var(--base-value), 10) * 1px);
+	--header-border-style: solid;
+	--header-border-color: #000;
+	--header-border-width: 0 0 1px 0;
 	--header-z-index: 4;
+	--header-button-len-x: calc(pow(var(--base-value), 5) * 1px);
+	--header-button-len-y: calc(pow(var(--base-value), 5) * 1px);
 
 	/* MAIN MENU */
-	--navigation-menu-max-width: 280px;
-	--navigation-menu-bg-color: linear-gradient(#f00, #00f);
+	--navigation-menu-max-width: calc(pow(var(--base-value), 8) * 1px);
+	--navigation-menu-bg-color: #fff;
+	--navigation-menu-border-style: solid;
+	--navigation-menu-border-color: #000;
+	--navigation-menu-border-width: 0 1px 0 0;
 
 	/* BODY NAVIGATION SETTINGS */
 	--body-nav-z-index: 9;
 
 	/* FOOTER SETTINGS */
 	--footer-bg-color: #fff;
-	--footer-workspace-max-width: 1280px;
+	--footer-workspace-max-width: calc(pow(var(--base-value), 10) * 1px);
 	--footer-z-index: 2;
+	--footer-border-style: solid;
+	--footer-border-color: #000;
+	--footer-border-width: 1px 0 0 0;
 
 	/* CONTENT SETTINGS */
 	--content-bg-color: #efefef;
 	--content-z-index: 3;
-	--content-min-height: calc (100vh - var(--header-height));
+	--content-min-height: calc(100vh - var(--header-height));
+	--content-workspace-max-width: var(--header-workspace-max-width);
 }

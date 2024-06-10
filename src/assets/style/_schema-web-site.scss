@@ -1,0 +1,9 @@
+/**
+ * Web Site Schema CSS file
+ */
+
+@use "cfg";
+
+html[itemtype$="/WebSite"] main {
+	padding: var(--regular-gap);
+}

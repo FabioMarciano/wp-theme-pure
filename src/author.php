@@ -57,29 +57,35 @@
 					<?php echo get_the_author_meta('display_name'); ?>
 				</figcaption>
 			</figure>
-			<h1 itemtype="><?php echo get_the_author_meta('display_name'); ?></h1>
+			<h1><?php echo get_the_author_meta('display_name'); ?></h1>
 			<h2><?php echo get_the_author_meta('description'); ?></h2>
 		</header>
-
-		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-				<h3>
-					<a href=" <?php the_permalink() ?>" rel="bookmark" title="Permanent Link: <?php the_title(); ?>"><?php the_title(); ?></a>
-				</h3>
-				<p class="posted-on">Posted on: <?php the_time('d M Y'); ?></p>
-
-				<?php the_excerpt(); ?>
-
-			<?php endwhile;
-
-			// Previous/next page navigation.
-			the_posts_pagination();
-
-
-		else : ?>
-			<p><?php _e('No posts by this author.'); ?></p>
-
-		<?php endif; ?>
-
+		<section>
+			<header>
+				<h3>Conteúdos de <?php echo get_the_author_meta('display_name'); ?></h3>
+			</header>
+			<div>
+				<?php if (have_posts()) : ?>
+					<ul>
+						<?php while (have_posts()) : the_post(); ?>
+							<li>
+								<h3>
+									<a href="<?php the_permalink(); ?>" rel="bookmark" title="Permanent Link: <?php the_title(); ?>"><?php the_title(); ?></a>
+								</h3>
+								<time datetime="<?php the_time('Y-m-d H:i:s'); ?>"><?php the_time('d M Y'); ?></time>
+								<?php the_excerpt(); ?>
+							</li>
+						<?php endwhile;
+						?>
+					</ul>
+				<?php else : ?>
+					<p><?php _e('No posts by this author.'); ?></p>
+				<?php endif; ?>
+			</div>
+			<footer>
+				PAGINACAO DO AUTOR
+			</footer>
+		</section>
 		<footer></footer>
 	</main>
 	<!-- /MAIN AREA -->

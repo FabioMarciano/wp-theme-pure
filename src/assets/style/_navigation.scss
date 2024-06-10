@@ -1,0 +1,58 @@
+/**
+  * Navigation
+  */
+
+@use "cfg";
+
+#body-nav {
+	position: fixed;
+	left: 0;
+	width: 100%;
+	max-width: var(--navigation-menu-max-width);
+	top: var(--header-height);
+	bottom: 0;
+	transform: translate(-100%, 0);
+	background: var(--navigation-menu-bg-color);
+	border-style: var(--navigation-menu-border-style);
+	border-color: var(--navigation-menu-border-color);
+	border-width: var(--navigation-menu-border-width);
+	transition: transform 0.2s ease-in-out;
+	z-index: var(--body-nav-z-index);
+
+	[data-body-nav] & {
+		transform: translate(0, 0);
+	}
+
+	& > header {
+		padding: var(--regular-gap);
+	}
+
+	& > menu li {
+		padding: var(--regular-gap);
+		border-top: solid 1px #ccc;
+	}
+}
+
+body {
+	&::after {
+		content: "";
+		display: block;
+		position: fixed;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		top: var(--header-height);
+		background-color: rgba(0, 0, 0, 0);
+		transition: background-color 0.2s ease-in-out;
+		z-index: 0;
+	}
+
+	&[data-body-nav] {
+		overflow: hidden;
+
+		&::after {
+			background-color: rgba(0, 0, 0, 0.5);
+			z-index: calc(var(--body-nav-z-index) - 1);
+		}
+	}
+}

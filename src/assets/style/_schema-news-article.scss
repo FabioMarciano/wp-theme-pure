@@ -1,0 +1,9 @@
+/**
+ * News Article Schema CSS file
+ */
+
+@use "cfg";
+
+html[itemtype$="/NewsArticle"] main {
+	padding: var(--regular-gap);
+}

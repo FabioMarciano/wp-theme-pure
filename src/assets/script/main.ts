@@ -4,6 +4,9 @@
 
 'use strict';
 
+import Throttle from './util/throttle';
+import Debounce from './util/debounce';
+
 console.log('Main script file loaded');
 
 /**
@@ -15,7 +18,7 @@ const setButtonText = (): string => {
 		Number(document.body.hasAttribute('data-body-nav'))
 	];
 	const btnNavigationSuffix = `menu de navegação`;
-	return [btnNavigationPrefix, btnNavigationSuffix].join();
+	return [btnNavigationPrefix, btnNavigationSuffix].join(' ');
 };
 
 /**
@@ -27,6 +30,15 @@ const setButtonText = (): string => {
  */
 const toggleAttribute = (element: HTMLElement, attribute: string): void => {
 	element && element.toggleAttribute(attribute);
+};
+
+/**
+ * Checks the scroll Y position and updates body's data-scroll attribute
+ * @returns void
+ */
+const setScrollPositionAttribute = () => {
+	const scrollPositionY = window.scrollY;
+	document.body.setAttribute('data-scroll', `${scrollPositionY > 0}`);
 };
 
 /**
@@ -57,10 +69,16 @@ const toggleAttribute = (element: HTMLElement, attribute: string): void => {
 	);
 	btnNavButtonElement.textContent = setButtonText();
 
-	btnNavButtonElement.addEventListener('click', (): void => {
-		toggleAttribute(document.body, bodyDataAttributeId);
-		btnNavButtonElement.innerHTML = setButtonText();
-	});
+	btnNavButtonElement.addEventListener(
+		'click',
+		Debounce(
+			(): void => {
+				toggleAttribute(document.body, bodyDataAttributeId);
+				btnNavButtonElement.textContent = setButtonText();
+			},
+			{ timeout: 200, wait: false }
+		)
+	);
 
 	parent.appendChild(btnNavButtonElement);
 
@@ -72,3 +90,22 @@ const toggleAttribute = (element: HTMLElement, attribute: string): void => {
 	document.querySelector('#body-header > div'),
 	'body-header'
 );
+
+/**
+ * Sets window's scroll and scroll end events
+ * @returns void
+ */
+(() => {
+	window.addEventListener(
+		'scroll',
+		Throttle(
+			() => {
+				setScrollPositionAttribute();
+			},
+			{ delay: 300 }
+		)
+	);
+	window.addEventListener('scrollend', () => {
+		setScrollPositionAttribute();
+	});
+})();
