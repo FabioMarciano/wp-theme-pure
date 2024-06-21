@@ -1,70 +1,30 @@
-<?php
-$mainMenu = wp_get_nav_menu_items('main-navigation');
-$socialNetworking = wp_get_nav_menu_items('social-networking');
+<!-- NAVIGATION MENU -->
+<nav id="body-navigation">
+	<header id="body-nav-header">
+		<h2 id="body-nav-headline">Menu de navegação</h2>
+	</header>
+	<?php
+	$args = array(
+		'menu' => 'main-menu',
+		'container' => false,
+		'menu_id' => 'main-menu',
+		'items_wrap' => '<menu itemscope itemtype="https://schema.org/SiteNavigationElement" id="%1$s">%3$s</menu>',
+		'theme_location' => 'main-menu'
+	);
+	wp_nav_menu($args);
+	?>
 
-if ($mainMenu && sizeof($mainMenu) > 0) :
-
-?>
-	<!-- NAVIGATION MENU -->
-	<nav id="body-nav">
-		<header id="body-nav-header">
-			<h2 id="body-nav-headline">Menu de navegação</h2>
-		</header>
-		<menu id="body-nav-list" itemscope itemtype="https://schema.org/SiteNavigationElement">
-			<?php
-			foreach ($mainMenu as $key => $item) :
-			?>
-				<li itemprop="name">
-					<?php
-					$enableAttr = ["url", "class", "target", "title"];
-					$attributes = [];
-
-					foreach ($enableAttr as $index => $key) {
-						if ($item->$key != null && $item->$key != "") {
-							$value = is_array($item->$key) ? implode(" ", $item->$key) : $item->$key;
-							$key = $key != "url" ? $key : "href";
-							$attributes[$key] = $value;
-						}
-					}
-
-					hook_tag_builder("a", $attributes, $item->title);
-					?>
-				</li>
-			<?php
-			endforeach;
-			?>
-		</menu>
-		<footer id="body-nav-footer">
-			<?php if ($socialNetworking && sizeof($socialNetworking) > 0) : ?>
-				<!-- SOCIAL NETWORK -->
-				<ul itemscope itemtype="https://schema.org/Organization" id="body-nav-social-network">
-					<?php
-					foreach ($socialNetworking as $key => $item) :
-					?>
-						<li itemprop="sameAs">
-							<?php
-							$enableAttr = ["url", "class", "target", "title"];
-							$attributes = [];
-
-							foreach ($enableAttr as $index => $key) {
-								if ($item->$key != null && $item->$key != "") {
-									$value = is_array($item->$key) ? implode(" ", $item->$key) : $item->$key;
-									$key = $key != "url" ? $key : "href";
-									$attributes[$key] = $value;
-								}
-							}
-
-							hook_tag_builder("a", $attributes, $item->title);
-							?>
-						</li>
-					<?php endforeach; ?>
-				</ul>
-				<!-- /SOCIAL NETWORK -->
-			<?php endif; ?>
-		</footer>
-	</nav>
-	<!-- /NAVIGATION MENU -->
-<?php
-endif;
-
-?>
+	<footer id="body-nav-footer">
+		<?php
+		$args = array(
+			'menu' => 'nav-social-menu',
+			'container' => false,
+			'menu_id' => 'nav-social-menu',
+			'items_wrap' => '<ul id="%1$s">%3$s</ul>',
+			'theme_location' => 'social-menu'
+		);
+		wp_nav_menu($args);
+		?>
+	</footer>
+</nav>
+<!-- /NAVIGATION MENU -->

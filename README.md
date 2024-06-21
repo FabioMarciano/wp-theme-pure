@@ -17,6 +17,9 @@ See **LICENSE** file.
 # Dependencies
 
 - NPM
-- TypeScript
+- NPM Watch
 - Sass
-- Grunt
+- TS Loader
+- TypeScript
+- Webpack
+- Webpack CLI

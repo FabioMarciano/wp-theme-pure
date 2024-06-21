@@ -63,12 +63,9 @@
 		<footer>MAIN FOOTER</footer>
 	</main>
 	<!-- /MAIN CONTENT AREA -->
-
-	<!-- BODY FOOTER -->
-	<?php get_template_part('parts/body-footer'); ?>
-	<!-- /BODY FOOTER -->
-
+	<!-- TEMPLATE FOOTER -->
 	<?php wp_footer(); ?>
+	<!-- /TEMPLATE FOOTER -->
 </body>
 <!-- /TEMPLATE BODY -->
 

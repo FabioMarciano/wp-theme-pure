@@ -13,9 +13,8 @@ const buildDirPath = [buildDirRoot, buildDirName].join('/');
 
 const clean = () => {
 	console.log(`Cleaning ${buildDirPath}`);
-	const list = fs
-		.readdirSync(buildDirPath, { recursive: true })
-		.forEach((inode) =>
+	fs.existsSync(buildDirPath) &&
+		fs.readdirSync(buildDirPath, { recursive: true }).forEach((inode) =>
 			fs.rmSync(`${[buildDirPath, inode].join('/')}`, {
 				force: true,
 				recursive: true,

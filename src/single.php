@@ -31,7 +31,11 @@ $postData = get_post($postID);
 	<main>
 		<!-- MAIN HEADER -->
 		<header>HEADER DO SINGLE</header>
+		<pre>
+		<?php print_r($postData); ?>
+</pre>
 		<!-- /MAIN HEADER -->
+		<?php the_post_thumbnail(); ?>
 		<!-- MAIN ARTICLE -->
 		<article>
 			<!-- ARTICLE HEADER -->
@@ -44,7 +48,7 @@ $postData = get_post($postID);
 					</a>
 				</address>
 				<div>
-					Publicado em <time itemprop="datePublished" datetime="<?php echo $postData->post_date; ?>"><?php echo $postData->post_date; ?></time>, atualizado em <time itemprop="dateModified" datetime="<?php echo $postData->post_modified; ?>"><?php echo $postData->post_modified; ?></time>
+					Publicado em <time itemprop="datePublished" datetime="<?php echo get_post_time("Y-m-d H:i:s P", false); ?>"><?php echo $postData->post_date; ?></time>, atualizado em <time itemprop="dateModified" datetime="<?php echo get_post_modified_time("Y-m-d H:i:s P", false); ?>"><?php echo $postData->post_modified; ?></time>
 				</div>
 			</header>
 			<!-- /ARTICLE HEADER -->
@@ -57,7 +61,7 @@ $postData = get_post($postID);
 			</figure>
 			<!-- /FEATURED IMAGE -->
 			<!-- ARTICLE WORKSPACE -->
-			<div>
+			<div itemprop="articleBody">
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In nisl nisi scelerisque eu. Vehicula ipsum a arcu cursus. Pellentesque habitant morbi tristique senectus et netus et. Turpis massa sed elementum tempus egestas. Magna etiam tempor orci eu lobortis elementum. Faucibus nisl tincidunt eget nullam non nisi est. Proin sed libero enim sed faucibus. At quis risus sed vulputate odio. Elit ullamcorper dignissim cras tincidunt lobortis feugiat vivamus at augue. Nunc congue nisi vitae suscipit tellus. Vitae aliquet nec ullamcorper sit amet risus nullam eget felis. At tellus at urna condimentum mattis pellentesque id nibh tortor. Viverra suspendisse potenti nullam ac. Morbi enim nunc faucibus a pellentesque sit amet.</p>
 				<p>Libero id faucibus nisl tincidunt eget nullam. At augue eget arcu dictum varius duis at consectetur lorem. Ut faucibus pulvinar elementum integer. Adipiscing vitae proin sagittis nisl. Faucibus a pellentesque sit amet porttitor. Aliquet nibh praesent tristique magna sit amet. Volutpat est velit egestas dui id ornare arcu. Odio facilisis mauris sit amet massa vitae tortor condimentum. Id leo in vitae turpis massa sed. Pulvinar mattis nunc sed blandit libero volutpat sed cras. Sit amet justo donec enim diam vulputate ut. Pretium quam vulputate dignissim suspendisse in est ante in nibh. Iaculis eu non diam phasellus vestibulum lorem sed risus ultricies. Pellentesque elit eget gravida cum sociis. Orci phasellus egestas tellus rutrum. Scelerisque purus semper eget duis.</p>
 				<p>Lobortis scelerisque fermentum dui faucibus in ornare quam viverra orci. Et odio pellentesque diam volutpat. Aenean vel elit scelerisque mauris pellentesque pulvinar. Eget aliquet nibh praesent tristique magna sit. Nibh sit amet commodo nulla facilisi nullam vehicula ipsum a. Non blandit massa enim nec dui nunc mattis enim ut. Tortor posuere ac ut consequat semper. Convallis a cras semper auctor neque vitae tempus quam pellentesque. Sed velit dignissim sodales ut. Sed vulputate odio ut enim. Nunc scelerisque viverra mauris in. Quisque non tellus orci ac. Posuere urna nec tincidunt praesent semper feugiat nibh sed pulvinar. Nunc consequat interdum varius sit amet mattis vulputate.</p>
@@ -78,10 +82,9 @@ $postData = get_post($postID);
 		<!-- /MAIN FOOTER -->
 	</main>
 	<!-- /MAIN CONTENT AREA -->
-	<!-- BODY FOOTER -->
-	<?php get_template_part('parts/body-footer'); ?>
-	<!-- /BODY FOOTER -->
+	<!-- TEMPLATE FOOTER -->
 	<?php wp_footer(); ?>
+	<!-- /TEMPLATE FOOTER -->
 </body>
 <!-- /TEMPLATE BODY -->
 

@@ -8,6 +8,8 @@
 @use "footer";
 @use "content";
 @use "schema-web-site";
+@use "schema-web-page";
+@use "schema-blog";
 @use "schema-news-article";
 @use "schema-profile-page";
 
@@ -20,6 +22,7 @@
 html,
 body {
 	font-size: var(--font-base-size);
+	background-color: var(--color-background);
 	min-height: 100vh;
 }
 

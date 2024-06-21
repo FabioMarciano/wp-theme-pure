@@ -26,7 +26,7 @@
 	<main>
 		<!-- MAIN HEADER -->
 		<header>
-			Glossário
+			<h1><?php the_title(); ?></h1>
 		</header>
 		<!-- /MAIN HEADER -->
 		<div>
@@ -44,10 +44,9 @@
 		<!-- MAIN FOOTER -->
 	</main>
 	<!-- /MAIN CONTENT AREA -->
-	<!-- BODY FOOTER -->
-	<?php get_template_part('parts/body-footer'); ?>
-	<!-- /BODY FOOTER -->
+	<!-- TEMPLATE FOOTER -->
 	<?php wp_footer(); ?>
+	<!-- /TEMPLATE FOOTER -->
 </body>
 <!-- /TEMPLATE BODY -->
 

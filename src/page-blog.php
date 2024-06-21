@@ -1,7 +1,7 @@
 <?php
 
 /**
- * The main template file
+ * The Blog template file
  *
  * @package WordPress
  * @subpackage Pure
@@ -9,7 +9,7 @@
  */
 ?>
 <!doctype html>
-<html <?php language_attributes(); ?> <?php schema_type(); ?>>
+<html <?php language_attributes(); ?> <?php schema_type('Blog'); ?>>
 <!-- TEMPLATE HEAD -->
 <?php get_header(); ?>
 <!-- /TEMPLATE HEAD -->
@@ -25,18 +25,45 @@
 	<!-- MAIN CONTENT AREA -->
 	<main>
 		<!-- MAIN HEADER -->
-		<header>HEADER DA INDEX</header>
+		<header>HEADER DE BLOG</header>
 		<!-- /MAIN HEADER -->
 		<!-- MAIN ARTICLE -->
 		<article>
 			<!-- ARTICLE HEADER -->
 			<header>
-				<h2><?php the_title(); ?></h2>
+				<h1><?php the_title(); ?></h1>
 			</header>
 			<!-- /ARTICLE HEADER -->
 			<!-- ARTICLE WORKSPACE -->
 			<div>
-				<?php the_content(); ?>
+				<?php $args = array(
+					'post_type' => 'post',
+					'orderby'    => 'post_date',
+					'post_status' => 'publish',
+					'order'    => 'DESC',
+					'posts_per_page' => 10, // -1 will retrive all the post that is published
+					'offset' => 0
+				);
+				$query = new WP_Query($args);
+
+				?>
+				<pre>COUNT: <?php echo $query->post_count; ?>/<?php print_r($_GET); ?>
+
+				<?php #print_r($query);
+				?></pre>
+				<?php if ($query->have_posts()) : ?>
+					<ul>
+						<?php while ($query->have_posts()) : $query->the_post(); ?>
+							<li itemprop="name">
+								<h3><?php the_title(sprintf('<a href="%s">', esc_url(get_permalink())), '</a>'); ?></h3>
+							</li>
+						<?php endwhile; ?>
+					</ul>
+				<?php else : ?>
+					NADA AQUI
+
+				<?php endif; ?>
+				<?php wp_reset_postdata(); ?>
 			</div>
 			<!-- /ARTICLE WORKSPACE -->
 			<!-- ARTICLE FOOTER -->

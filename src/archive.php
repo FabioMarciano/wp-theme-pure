@@ -26,6 +26,34 @@
 	<main>
 		<!-- MAIN HEADER -->
 		<header>
+			<?php
+			$breadCrumbList = [];
+			function breadcrumb($id = "0")
+			{
+				global $breadCrumbList;
+				if ($id != "0") {
+					$item = get_term($id);
+					$item->permalink = get_tag_link($id);
+					array_push($breadCrumbList, $item);
+					return breadcrumb($item->parent);
+				} else {
+					$permalink = implode("/", [get_option('home', '/'), trim(get_option('category_base', 'category'), "/")]);
+					array_push($breadCrumbList, ["name" => "Categorias", "slug" => "categorias", "permalink" => $permalink]);
+					$breadCrumbList = array_reverse($breadCrumbList);
+					return $breadCrumbList;
+				}
+			}
+			echo "<pre>";
+
+			print_r(breadcrumb(get_queried_object()->term_id));
+			?>
+			INSERIR BREADCRUMB<br>
+			<pre><?php #print_r(get_term("4"));
+					?></pre>
+			<pre><?php #print_r(get_queried_object());
+					?></pre>
+			<br><?php #print_r(get_ancestors(get_queried_object()->term_id, get_queried_object()->taxonomy));
+				?>
 			<?php the_archive_title('<h1>', '</h1>'); ?>
 		</header>
 		<!-- /MAIN HEADER -->
@@ -37,10 +65,9 @@
 		<!-- MAIN FOOTER -->
 	</main>
 	<!-- /MAIN CONTENT AREA -->
-	<!-- BODY FOOTER -->
-	<?php get_template_part('parts/body-footer'); ?>
-	<!-- /BODY FOOTER -->
+	<!-- TEMPLATE FOOTER -->
 	<?php wp_footer(); ?>
+	<!-- /TEMPLATE FOOTER -->
 </body>
 <!-- /TEMPLATE BODY -->
 

@@ -15,7 +15,7 @@ console.log('Main script file loaded');
  */
 const setButtonText = (): string => {
 	const btnNavigationPrefix = [`Abrir`, `Fechar`][
-		Number(document.body.hasAttribute('data-body-nav'))
+		Number(document.body.hasAttribute('data-body-navigation'))
 	];
 	const btnNavigationSuffix = `menu de navegação`;
 	return [btnNavigationPrefix, btnNavigationSuffix].join(' ');
@@ -73,6 +73,7 @@ const setScrollPositionAttribute = () => {
 		'click',
 		Debounce(
 			(): void => {
+				target.scrollTop = 0;
 				toggleAttribute(document.body, bodyDataAttributeId);
 				btnNavButtonElement.textContent = setButtonText();
 			},
@@ -82,11 +83,17 @@ const setScrollPositionAttribute = () => {
 
 	parent.appendChild(btnNavButtonElement);
 
-	documentBodyElement.addEventListener('click', (event: any): void => {
-		event.target.removeAttribute(bodyDataAttributeId, null);
-	});
+	documentBodyElement.addEventListener(
+		'click',
+		Debounce(
+			(event: any): void => {
+				event.target.removeAttribute(bodyDataAttributeId, null);
+			},
+			{ timeout: 200, wait: false }
+		)
+	);
 })(
-	document.querySelector('#body-nav'),
+	document.querySelector('#body-navigation'),
 	document.querySelector('#body-header > div'),
 	'body-header'
 );
@@ -102,7 +109,7 @@ const setScrollPositionAttribute = () => {
 			() => {
 				setScrollPositionAttribute();
 			},
-			{ delay: 300 }
+			{ delay: 200 }
 		)
 	);
 	window.addEventListener('scrollend', () => {

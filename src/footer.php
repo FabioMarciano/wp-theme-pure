@@ -9,3 +9,5 @@
  * @subpackage Pure
  * @since Pure 1.0
  */
+
+get_template_part('parts/body-footer');

@@ -22,7 +22,10 @@
 			// }
 			echo implode(": ", $title)
 			?></title>
-	<meta name="description" content="<?php echo get_bloginfo('description'); ?>">
+	<meta name="description" content="<?php
+										$description = is_single() ? get_the_excerpt() : get_bloginfo('description');
+										echo esc_attr($description);
+										?>">
 	<?php schema_head(); ?>
 	<meta name="theme-color" content="#ccc">
 	<?php wp_head(); ?>
