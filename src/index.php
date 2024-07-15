@@ -47,12 +47,12 @@
 		</article>
 		<!-- /MAIN ARTICLE -->
 		<!-- MAIN FOOTER -->
-		<footer></footer>
+		<footer>MAIN FOOTER</footer>
 		<!-- /MAIN FOOTER -->
 	</main>
 	<!-- /MAIN CONTENT AREA -->
 	<!-- TEMPLATE FOOTER -->
-	<?php wp_footer(); ?>
+	<?php get_footer(); ?>
 	<!-- /TEMPLATE FOOTER -->
 </body>
 <!-- /TEMPLATE BODY -->

@@ -14,17 +14,37 @@
 
 	& > div {
 		position: relative;
-		width: 100%;
 		max-width: var(--footer-workspace-max-width);
 		margin: auto;
 		padding: var(--regular-gap);
 		box-sizing: border-box;
+		& > div {
+			box-sizing: border-box;
+			width: 100%;
+			max-width: 100%;
+			position: relative;
+			padding: 0 0 0 calc(var(--regular-gap) + 64px);
+			& > figure {
+				position: absolute;
+				left: 0;
+				top: 0;
+				max-width: 100%;
+				& img {
+					max-width: 100%;
+					height: auto;
+				}
+			}
+		}
 	}
+}
 
-	&-headline {
-		display: block;
-		position: absolute;
-		left: var(--regular-gap);
-		top: var(--regular-gap);
+@media (max-width: 639px) {
+	#body-footer {
+		& > div {
+			& > div {
+				margin: 0 0 0 0;
+				padding: 0 0 0 calc(var(--regular-gap) + 64px);
+			}
+		}
 	}
 }

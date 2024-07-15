@@ -3,15 +3,6 @@
 require_once("include/hook-tag-builder.php");
 
 /**
- * Footer actions
- */
-
-add_action('wp_footer', function () {
-	include("footer.php");
-	hook_tag_builder("script", ["src" => get_theme_file_uri("/assets/script/main.js"),  "defer" => "defer"]);
-});
-
-/**
  * Removing emoji scripts and styles
  */
 remove_action('wp_head', 'print_emoji_detection_script', 7);
@@ -82,7 +73,7 @@ add_action('after_setup_theme', function () {
 function get_schema_type($type = "")
 {
 	if ($type == "") {
-		$schema = array("WebSite" => is_home(), "WebSite" => is_front_page(), "NewsArticle" => is_single(), "ProfilePage" => is_author());
+		$schema = array("WebSite" => is_home() || is_front_page(), "NewsArticle" => is_single(), "ProfilePage" => is_author());
 
 		$type = "WebPage";
 		foreach ($schema as $key => $value) {

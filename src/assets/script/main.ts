@@ -50,38 +50,28 @@ const setScrollPositionAttribute = () => {
 ((
 	target: HTMLElement | null,
 	parent: HTMLElement | null,
-	prefix: string = ''
+	button: HTMLElement | null
 ): void => {
-	if (!(target && parent)) {
+	if (!(target && parent && button)) {
 		return;
 	}
 
-	const btnNavButtonElement: HTMLElement = document.createElement('button');
 	const documentBodyElement: HTMLElement = document.body;
 	const bodyDataAttributeId: string = ['data', target.getAttribute('id')].join(
 		'-'
 	);
 
-	btnNavButtonElement.setAttribute('type', 'button');
-	btnNavButtonElement.setAttribute(
-		'id',
-		[prefix, 'toggle', 'nav', 'button'].join('-')
-	);
-	btnNavButtonElement.textContent = setButtonText();
-
-	btnNavButtonElement.addEventListener(
+	button.addEventListener(
 		'click',
 		Debounce(
 			(): void => {
 				target.scrollTop = 0;
 				toggleAttribute(document.body, bodyDataAttributeId);
-				btnNavButtonElement.textContent = setButtonText();
+				button.textContent = setButtonText();
 			},
 			{ timeout: 200, wait: false }
 		)
 	);
-
-	parent.appendChild(btnNavButtonElement);
 
 	documentBodyElement.addEventListener(
 		'click',
@@ -95,7 +85,7 @@ const setScrollPositionAttribute = () => {
 })(
 	document.querySelector('#body-navigation'),
 	document.querySelector('#body-header > div'),
-	'body-header'
+	document.querySelector('#body-header-toggle-nav-button')
 );
 
 /**

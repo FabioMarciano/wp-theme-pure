@@ -83,7 +83,7 @@ $postData = get_post($postID);
 	</main>
 	<!-- /MAIN CONTENT AREA -->
 	<!-- TEMPLATE FOOTER -->
-	<?php wp_footer(); ?>
+	<?php get_footer(); ?>
 	<!-- /TEMPLATE FOOTER -->
 </body>
 <!-- /TEMPLATE BODY -->

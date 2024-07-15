@@ -24,36 +24,42 @@
 	<!-- /BODY NAVIGATION -->
 	<!-- MAIN CONTENT AREA -->
 	<main>
-		<!-- MAIN HEADER -->
-		<header>
+		<nav>
 			<?php
 			$breadCrumbList = [];
-			function breadcrumb($id = "0")
+			function getBreadcrumb($id = "0")
 			{
 				global $breadCrumbList;
 				if ($id != "0") {
 					$item = get_term($id);
 					$item->permalink = get_tag_link($id);
 					array_push($breadCrumbList, $item);
-					return breadcrumb($item->parent);
+					return getBreadcrumb($item->parent);
 				} else {
 					$permalink = implode("/", [get_option('home', '/'), trim(get_option('category_base', 'category'), "/")]);
-					array_push($breadCrumbList, ["name" => "Categorias", "slug" => "categorias", "permalink" => $permalink]);
+					array_push($breadCrumbList, (object)["name" => "Categorias", "slug" => "categorias", "permalink" => $permalink]);
 					$breadCrumbList = array_reverse($breadCrumbList);
 					return $breadCrumbList;
 				}
 			}
-			echo "<pre>";
 
-			print_r(breadcrumb(get_queried_object()->term_id));
+			getBreadcrumb(get_queried_object()->term_id);
+			if (sizeof($breadCrumbList) > 0) :
 			?>
-			INSERIR BREADCRUMB<br>
-			<pre><?php #print_r(get_term("4"));
-					?></pre>
-			<pre><?php #print_r(get_queried_object());
-					?></pre>
-			<br><?php #print_r(get_ancestors(get_queried_object()->term_id, get_queried_object()->taxonomy));
-				?>
+				<ul itemscope itemtype="http://schema.org/BreadcrumbList">
+					<?php foreach ($breadCrumbList as $index => $item) : ?>
+						<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+							<a itemprop="item" href="<?php echo $item->permalink; ?>">
+								<strong itemprop="name"><?php echo $item->name; ?></strong>
+								<meta itemprop="position" content="<?php echo intval($index + 1); ?>">
+							</a>
+						</li>
+					<?php endforeach; ?>
+				</ul>
+			<?php endif; ?>
+		</nav>
+		<!-- MAIN HEADER -->
+		<header>
 			<?php the_archive_title('<h1>', '</h1>'); ?>
 		</header>
 		<!-- /MAIN HEADER -->
@@ -66,7 +72,7 @@
 	</main>
 	<!-- /MAIN CONTENT AREA -->
 	<!-- TEMPLATE FOOTER -->
-	<?php wp_footer(); ?>
+	<?php get_footer(); ?>
 	<!-- /TEMPLATE FOOTER -->
 </body>
 <!-- /TEMPLATE BODY -->

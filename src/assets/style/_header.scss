@@ -9,8 +9,9 @@
 	top: 0;
 	background-color: var(--header-bg-color);
 	border-style: var(--header-border-style);
-	border-color: var(--color-on-surface);
+	border-color: var(--header-border-color);
 	border-width: var(--header-border-width);
+	border-radius: var(--header-border-radius);
 	z-index: var(--header-z-index);
 	height: var(--header-height);
 	transition: background-color 0.5s;
@@ -30,23 +31,31 @@
 		position: absolute;
 		left: var(--regular-gap);
 		top: 50%;
-		transform: translate(0, -50%);
+		transform: translate(0, -50%) rotate(0deg);
 		width: var(--header-button-len-x);
 		height: var(--header-button-len-y);
 		text-indent: -999em;
 		overflow: hidden;
-		background-color: var(--color-on-surface);
+		background-color: var(--header-button-bg-color);
 		border-width: var(--header-button-border-width);
 		border-style: var(--header-button-border-style);
 		border-color: var(--header-button-border-color);
+		border-radius: var(--header-button-border-radius);
 		box-sizing: border-box;
+		background-image: var(--header-button-bg-image);
+		background-position: var(--header-button-bg-position);
+		background-repeat: var(--header-button-bg-repeat);
+		background-size: var(--header-button-bg-size);
+		transition: all 0.5s;
 	}
 
 	[data-body-navigation] &-toggle-nav-button {
-		background-color: var(--header-button-active-bg);
+		background-color: var(--header-button-active-bg-color);
 		border-width: var(--header-button-active-border-width);
 		border-style: var(--header-button-active-border-style);
 		border-color: var(--header-button-active-border-color);
+		background-image: var(--header-button-active-bg-image);
+		transform: translate(0, -50%) rotate(90deg);
 	}
 
 	&-headline {
@@ -59,17 +68,10 @@
 }
 
 [data-scroll="true"] {
-	&[data-body-navigation] {
-		& #body-header {
-			&-toggle-nav-button {
-				background-color: #00f;
-			}
-		}
-	}
 	& #body-header {
 		background-color: var(--header-active-bg-color);
-		&-toggle-nav-button {
-			background-color: #f0f;
-		}
+		border-width: var(--header-active-border-width);
+		border-style: var(--header-active-border-style);
+		border-color: var(--header-active-border-color);
 	}
 }

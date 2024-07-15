@@ -2,6 +2,7 @@
 <header id="body-header">
 	<!-- MAIN HEADER WORKSPACE -->
 	<div>
+		<button id="body-header-toggle-nav-button" type="button">Abrir menu de navegação</button>
 		<?php
 		$headlineTag = ["h2", "h1"];
 		$headlineTag = $headlineTag[intval(is_home() || is_front_page())];

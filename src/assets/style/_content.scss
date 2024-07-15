@@ -16,5 +16,13 @@ body {
 			width: 100%;
 			height: auto;
 		}
+
+		& article {
+			p {
+				font-size: var(--paragraph-font-size);
+				line-height: var(--paragraph-line-height);
+				margin-bottom: var(--paragraph-margin-bottom);
+			}
+		}
 	}
 }

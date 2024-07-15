@@ -12,6 +12,7 @@
 @use "schema-blog";
 @use "schema-news-article";
 @use "schema-profile-page";
+@use "schema-breadcrumb-list";
 
 * {
 	margin: 0;
@@ -22,16 +23,23 @@
 html,
 body {
 	font-size: var(--font-base-size);
+	font-family: serif;
 	background-color: var(--color-background);
 	min-height: 100vh;
 }
 
 a {
 	text-decoration: none;
+	color: var(--color-link);
 }
 
 a:hover {
 	text-decoration: underline;
+}
+
+a:visited {
+	text-decoration: underline;
+	color: var(--color-link);
 }
 
 address,
@@ -46,19 +54,13 @@ menu {
 	list-style-type: none;
 }
 
-p {
-	font-size: var(--paragraph-font-size);
-	line-height: var(--paragraph-line-height);
-	margin-bottom: var(--paragraph-margin-bottom);
-}
-
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-	font-size: 1em;
+	font-size: 1rem;
 }
 
 button {

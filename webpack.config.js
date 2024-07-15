@@ -26,11 +26,11 @@ module.exports = {
 	},
 	output: {
 		path: path.resolve(__dirname, buildDirPath),
-		filename: '[name].js', // <--- Will be compiled to this single file
+		filename: '[name].js',
 	},
 	optimization: {
 		minimize: true,
-		minimizer: [new TerserPlugin({ parallel: true })],
+		minimizer: [new TerserPlugin({ minify: TerserPlugin.uglifyJsMinify })],
 	},
 	resolve: {
 		extensions: ['.ts', '.tsx', '.js'],

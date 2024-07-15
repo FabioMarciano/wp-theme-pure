@@ -29,26 +29,25 @@
 	<!-- MAIN AREA -->
 	<main>
 		<nav>
-			<ul itemscope itemtype="http://schema.org/BreadcrumbList">
-				<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-					<a itemprop="item" href="<?php echo get_bloginfo('url'); ?>">
-						<h3 itemprop="name">Página inicial</h3>
-						<meta itemprop="position" content="1">
-					</a>
-				</li>
-				<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-					<a itemprop="item" href="/author/">
-						<h3 itemprop="name">Autores</h3>
-						<meta itemprop="position" content="2">
-					</a>
-				</li>
-				<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-					<a itemprop="item" href="/author/<?php echo get_the_author_meta('nicename'); ?>">
-						<h3 itemprop="name"><?php echo get_the_author_meta('display_name'); ?></h3>
-						<meta itemprop="position" content="3">
-					</a>
-				</li>
-			</ul>
+			<?php $breadCrumbList = [
+				["name" => "Página Inicial", "permalink" => get_bloginfo('url')],
+				["name" => "Autores", "permalink" => trim(get_bloginfo('url'), "/") . "/author/"],
+				["name" => get_the_author_meta('display_name'), "permalink" => trim(get_bloginfo('url'), "/") . "/author/" . get_the_author_meta('nicename')]
+			];
+
+			if (sizeof($breadCrumbList) > 0) :
+			?>
+				<ul itemscope itemtype="http://schema.org/BreadcrumbList">
+					<?php foreach ($breadCrumbList as $index => $item) : $item = (object)$item; ?>
+						<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+							<a itemprop="item" href="<?php echo $item->permalink; ?>">
+								<strong itemprop="name"><?php echo $item->name; ?></strong>
+								<meta itemprop="position" content="<?php echo intval($index + 1); ?>">
+							</a>
+						</li>
+					<?php endforeach; ?>
+				</ul>
+			<?php endif; ?>
 		</nav>
 		<header>
 			<figure>
@@ -90,7 +89,7 @@
 	</main>
 	<!-- /MAIN AREA -->
 	<!-- TEMPLATE FOOTER -->
-	<?php wp_footer(); ?>
+	<?php get_footer(); ?>
 	<!-- /TEMPLATE FOOTER -->
 </body>
 <!-- /TEMPLATE BODY -->
