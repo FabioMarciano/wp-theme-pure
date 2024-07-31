@@ -30,6 +30,7 @@ body {
 
 a {
 	text-decoration: none;
+	font-weight: bold;
 	color: var(--color-link);
 }
 
@@ -70,4 +71,46 @@ button {
 
 img {
 	display: block;
+}
+
+ul.social-networking li {
+	margin: 0 0 var(--regular-gap) 0;
+}
+
+ul.social-networking a {
+	display: inline-block;
+	line-height: var(--regular-gap);
+	height: var(--regular-gap);
+	width: var(--regular-gap);
+	font-size: 1.2em;
+	position: relative;
+	padding-left: calc(var(--regular-gap) + var(--regular-gap) / 4);
+
+	background-repeat: no-repeat;
+	background-size: auto var(--regular-gap);
+	background-position: left center;
+}
+
+// ul.social-networking li a:before {
+// 	position: absolute;
+// 	left: 0;
+// 	top: 50%;
+// 	transform: translate(0, -50%);
+// 	content: "";
+// 	display: inline-block;
+// 	width: var(--regular-gap);
+// 	height: var(--regular-gap);
+// 	background-repeat: no-repeat;
+// 	background-size: 100%;
+// 	background-position: center center;
+// 	opacity: 0.7;
+// }
+
+$brands: "instagram", "facebook", "whatsapp", "linkedin", "doctoralia";
+
+@each $brand in $brands {
+	ul.social-networking a[href^='https://#{$brand}.com']
+	{
+		background-image: url("assets/media/icon/brands/#{$brand}.svg");
+	}
 }

@@ -3,14 +3,14 @@
 	<div itemscope itemtype="https://schema.org/MedicalBusiness">
 		<div>
 			<figure itemscope itemprop="image" itemtype="https://schema.org/ImageObject">
-				<img itemprop="url" src="https://1.gravatar.com/avatar/13d4cf8bce64a6fd4adad8eb748e6387?s=180&d=mm&r=g" width="64" height="64" alt="">
+				<img itemprop="url" src="http://localhost:8000/wp-content/uploads/2024/07/60b37a3cd343fedecaf3bea55df07b75.jpg" width="564" height="783" alt="">
 			</figure>
 			<h2 itemprop="name">Vivian Perez Marciano</h2>
 			<h3 itemprop="description">
-				<strong>Psicóloga</strong> especializada em <em>Terapia Cogitivo Comportamental</em>.
-				<abbr itemprop="memberOf" content="Conselho Regional de Psicologia">CRP</abbr> <mark itemprop="identifier" title="Registro no Conselho Regional de Psicologia (CPR)">12345678</mark>
+				<strong>Psicóloga</strong> especializada em <abbr content="Terapia Cogitivo Comportamental">TCC</abbr> - <em>Terapia Cogitivo Comportamental</em>.
 			</h3>
-			<mark itemprop="openingHours" content="Mo-Fr 09:00-17:00">Atendimento de segunda a sexta, das 9h00 às 17h</mark>
+			<abbr itemprop="memberOf" content="Conselho Regional de Psicologia">CRP</abbr> <mark itemprop="identifier" title="Registro no Conselho Regional de Psicologia (CPR)">12345678</mark>
+			<p>Atendimento de <mark itemprop="openingHours" content="Mo-Fr 09:00-17:00">segunda a sexta, das 9h00 às 17h</mark></p>
 			<address itemscope itemprop="address" itemtype="https://schema.org/PostalAddress">
 				<strong itemprop="streetAddress">Avenida Zumkeller, 933</strong>
 				<span itemprop="addressLocality">São Paulo</span>
@@ -24,7 +24,7 @@
 				'menu' => 'social-menu',
 				'container' => false,
 				'menu_id' => 'footer-social-menu',
-				'items_wrap' => '<ul id="%1$s">%3$s</ul>',
+				'items_wrap' => '<ul class="social-networking" id="%1$s">%3$s</ul>',
 				'theme_location' => 'social-menu'
 			);
 			wp_nav_menu($args);

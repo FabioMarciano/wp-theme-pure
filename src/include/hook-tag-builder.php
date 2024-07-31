@@ -15,5 +15,5 @@ function hook_tag_builder($tag, $attributes = [], $content = "", $autoClose = fa
 		array_push($list, $key . "=\"" . $value . "\"");
 	}
 
-	echo "<" . implode(" ", $list) . ($autoClose ? "/>" : ">" . $content . "</" . $tag . ">");
+	echo "<" . implode(" ", $list) . ">" . (!$autoClose ? $content . "</" . $tag . ">" : "");
 }

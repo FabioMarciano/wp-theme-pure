@@ -20,7 +20,7 @@
 			'menu' => 'nav-social-menu',
 			'container' => false,
 			'menu_id' => 'nav-social-menu',
-			'items_wrap' => '<ul id="%1$s">%3$s</ul>',
+			'items_wrap' => '<ul class="social-networking" id="%1$s">%3$s</ul>',
 			'theme_location' => 'social-menu'
 		);
 		wp_nav_menu($args);

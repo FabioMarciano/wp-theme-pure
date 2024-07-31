@@ -29,10 +29,30 @@
 				left: 0;
 				top: 0;
 				max-width: 100%;
+				overflow: hidden;
 				& img {
-					max-width: 100%;
+					width: 64px;
 					height: auto;
 				}
+			}
+		}
+	}
+	& .social-networking {
+		margin-top: 1em;
+		display: flex;
+		flex-direction: row;
+		max-width: 120px;
+		justify-content: space-between;
+		& li {
+			& a {
+				width: 24px;
+				height: 24px;
+				background-size: auto 24px;
+				text-indent: -999em;
+				overflow: hidden;
+				color: transparent;
+				font-size: 0;
+				padding: 0;
 			}
 		}
 	}
