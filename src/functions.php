@@ -72,7 +72,7 @@ add_action('after_setup_theme', function () {
  */
 function get_schema_type($type = "")
 {
-	if ($type == "") {
+	if ($type === "") {
 		$schema = array("WebSite" => is_home() || is_front_page(), "NewsArticle" => is_single(), "ProfilePage" => is_author());
 
 		$type = "WebPage";
@@ -99,11 +99,11 @@ function schema_head()
 {
 	$url = (is_home() || is_front_page()) ? get_site_url() : get_the_permalink();
 
-	hook_tag_builder("meta", ["itemprop" => "url", "content" => $url], null, true);
+	hook_tag_builder("meta", ["itemprop" => "url", "content" => $url]);
 	echo "\n\t";
 
 	if (is_home() || is_front_page()) {
-		hook_tag_builder("meta", ["itemprop" => "name", "content" =>  get_bloginfo('name')], null, true);
+		hook_tag_builder("meta", ["itemprop" => "name", "content" =>  get_bloginfo('name')]);
 		echo "\n";
 	}
 }
@@ -159,6 +159,18 @@ add_filter('nav_menu_item_attributes', function ($atts, $item, $args) {
 
 	return $atts;
 }, 10, 3);
+
+
+/**
+ * Disable fetchpriority attribute on all post images
+ */
+add_filter(
+	'wp_get_loading_optimization_attributes',
+	function ($loading_attrs) {
+		unset($loading_attrs['fetchpriority']);
+		return $loading_attrs;
+	}
+);
 
 // --------------------
 // SETTINGS

@@ -32,7 +32,6 @@ $postData = get_post($postID);
 		<!-- MAIN HEADER -->
 		<header>HEADER DO SINGLE</header>
 		<!-- /MAIN HEADER -->
-		<?php the_post_thumbnail(); ?>
 		<!-- MAIN ARTICLE -->
 		<article>
 			<!-- ARTICLE HEADER -->
@@ -45,7 +44,7 @@ $postData = get_post($postID);
 					</a>
 				</address>
 				<div>
-					Publicado em <time itemprop="datePublished" datetime="<?php echo get_post_time("Y-m-d H:i:s P", false); ?>"><?php echo $postData->post_date; ?></time>, atualizado em <time itemprop="dateModified" datetime="<?php echo get_post_modified_time("Y-m-d H:i:s P", false); ?>"><?php echo $postData->post_modified; ?></time>
+					Publicado em <time itemprop="datePublished" datetime="<?php echo get_post_time("Y-m-d H:i:s P", false); ?>"><?php echo get_post_time("d/m/Y H:i", false); ?></time>, atualizado em <time itemprop="dateModified" datetime="<?php echo get_post_modified_time("Y-m-d H:i:s P", false); ?>"><?php echo get_post_modified_time("d/m/Y H:i", false); ?></time>
 				</div>
 			</header>
 			<!-- /ARTICLE HEADER -->

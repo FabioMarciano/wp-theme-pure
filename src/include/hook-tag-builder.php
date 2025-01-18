@@ -7,9 +7,10 @@
  * @returns {string} html - html script block
 **/
 
-function hook_tag_builder($tag, $attributes = [], $content = "", $autoClose = false)
+function hook_tag_builder($tag, $attributes = [], $content = null)
 {
 	$list = array($tag);
+	$autoClose = $content === null;
 
 	foreach ($attributes as $key => $value) {
 		array_push($list, $key . "=\"" . $value . "\"");

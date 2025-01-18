@@ -46,6 +46,30 @@
 			<!-- /ARTICLE FOOTER -->
 		</article>
 		<!-- /MAIN ARTICLE -->
+
+		<?php
+		$sectionList = ["home", "sobre"];
+
+		foreach ($sectionList as $index => $name):
+		?>
+			<?php
+			$page = get_posts(['name' => $name, 'post_type' => 'page']);
+			if (sizeof($page) > 0):
+				$page = $page[0];
+			?>
+				<!-- SECTION -->
+				<section class="lp-section" id="section-page-<?php echo $name; ?>">
+					<header>
+						<h3><a name="<?php echo $name; ?>"><?php echo $page->post_title; ?></a></h3>
+					</header>
+					<div>
+						<?php echo $page->post_content; ?>
+					</div>
+				</section>
+				<!-- /SECTION -->
+			<?php endif; ?>
+		<?php endforeach; ?>
+
 		<!-- MAIN FOOTER -->
 		<footer>MAIN FOOTER</footer>
 		<!-- /MAIN FOOTER -->
